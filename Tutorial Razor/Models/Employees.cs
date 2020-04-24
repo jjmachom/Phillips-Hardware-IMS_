@@ -21,8 +21,10 @@ namespace Tutorial_Razor.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter a Password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public string Role { get; set; }
         public int Active { get; set; }
+        
     }
 }
