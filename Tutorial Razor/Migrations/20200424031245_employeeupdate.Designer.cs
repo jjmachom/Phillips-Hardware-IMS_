@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tutorial_Razor.Data;
 
 namespace Tutorial_Razor.Migrations
 {
     [DbContext(typeof(Tutorial_RazorContext))]
-    partial class Tutorial_RazorContextModelSnapshot : ModelSnapshot
+    [Migration("20200424031245_employeeupdate")]
+    partial class employeeupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
