@@ -17,5 +17,9 @@ namespace Tutorial_Razor.Data
         public DbSet<Tutorial_Razor.Models.Customers> Customers { get; set; }
 
         public DbSet<Tutorial_Razor.Models.Employees> Employees { get; set; }
+
+        public DbSet<Tutorial_Razor.Models.Products> Products { get; set; }
+
+        public DbSet<Tutorial_Razor.Models.Suppliers> Suppliers { get; set; }
     }
 }

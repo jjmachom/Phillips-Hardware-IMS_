@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tutorial_Razor.Data;
 
 namespace Tutorial_Razor.Migrations
 {
     [DbContext(typeof(Tutorial_RazorContext))]
-    partial class Tutorial_RazorContextModelSnapshot : ModelSnapshot
+    [Migration("20200425061021_productaddedupdatever2")]
+    partial class productaddedupdatever2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,25 +95,6 @@ namespace Tutorial_Razor.Migrations
                     b.HasKey("probId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Tutorial_Razor.Models.Suppliers", b =>
-                {
-                    b.Property<int>("supId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SupplierName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("cost")
-                        .HasColumnType("float");
-
-                    b.HasKey("supId");
-
-                    b.ToTable("Suppliers");
                 });
 #pragma warning restore 612, 618
         }
