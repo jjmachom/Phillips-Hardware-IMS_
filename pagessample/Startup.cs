@@ -1,17 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
+using pagessample.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Tutorial_Razor.Data;
 
-namespace Tutorial_Razor
+namespace pagessample
 {
     public class Startup
     {
@@ -25,27 +27,12 @@ namespace Tutorial_Razor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();/*.AddRazorPagesOptions(options =>
-            {
-                options.Conventions.AuthorizePage("/Index");
-                options.Conventions.AuthorizePage("/Product/Index");
-                options.Conventions.AuthorizePage("/Employee/Delete");
-                options.Conventions.AuthorizePage("/Product/Index");
-                options.Conventions.AuthorizePage("/Supplier/Index");
-                
-                options.Conventions.AllowAnonymousToPage("/Index");
-            });*/
-
-            services.AddDbContext<Tutorial_RazorContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
-
-            services.AddDbContext<Tutorial_RazorContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
-
-
-
-
-
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +41,7 @@ namespace Tutorial_Razor
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -67,6 +55,7 @@ namespace Tutorial_Razor
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

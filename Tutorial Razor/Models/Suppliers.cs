@@ -16,7 +16,9 @@ namespace Tutorial_Razor.Models
         [Display(Name = "Supplier")]
         public string SupplierName { get; set; }
 
-
+        [Required(ErrorMessage = "Please enter a Supplier Name")]
+        [Display(Name = "Item Name")]
+        public string ProductName { get; set; }
 
         [DataType(DataType.Currency)]
         [Display(Name = "cost")]
