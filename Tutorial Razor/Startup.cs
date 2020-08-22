@@ -54,10 +54,10 @@ namespace Tutorial_Razor
 
 
             services.AddDbContext<Tutorial_RazorContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
+             options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
 
             services.AddDbContext<Tutorial_RazorContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
 
 
 
