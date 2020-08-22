@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Tutorial_Razor.Data;
+using Tutorial_Razor.Models;
+using Inventory.Models;
 
 namespace Tutorial_Razor
 {
@@ -36,12 +38,26 @@ namespace Tutorial_Razor
                 options.Conventions.AllowAnonymousToPage("/Index");
             });*/
 
-            services.AddDbContext<Tutorial_RazorContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+
+
+            }).AddEntityFrameworkStores<IdentityAppContext>();
+
+            services.AddDbContext<IdentityAppContext>(cfg =>
+            {
+
+                cfg.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext"));
+               
+            });
+
 
             services.AddDbContext<Tutorial_RazorContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
+              options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
 
+            services.AddDbContext<Tutorial_RazorContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext")));
 
 
 
