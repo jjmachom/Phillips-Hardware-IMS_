@@ -38,19 +38,19 @@ namespace Tutorial_Razor
                 options.Conventions.AllowAnonymousToPage("/Index");
             });*/
 
-            services.AddIdentity<AppUser, AppRole>(options =>
-            {
-                options.User.RequireUniqueEmail = true;
+            //services.AddIdentity<AppUser, AppRole>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = true;
 
 
-            }).AddEntityFrameworkStores<IdentityAppContext>();
+            //}).AddEntityFrameworkStores<IdentityAppContext>();
 
-            services.AddDbContext<IdentityAppContext>(cfg =>
-            {
+            //services.AddDbContext<IdentityAppContext>(cfg =>
+            //{
 
-                cfg.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext"));
+            //    cfg.UseSqlServer(Configuration.GetConnectionString("Tutorial_RazorContext"));
                
-            });
+            //});
 
 
             services.AddDbContext<Tutorial_RazorContext>(options =>
@@ -82,7 +82,7 @@ namespace Tutorial_Razor
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
